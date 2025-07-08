@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Cab Booking System
 
 A clean and simple cab booking management system built with Express.js and EJS templating engine.
@@ -89,3 +90,6 @@ cab-booking-system/
 ## License
 
 MIT License - feel free to use and modify as needed. 
+=======
+# cab
+>>>>>>> 30c7628c33d1a512f718dcd7b127ef3d4ac00e04
