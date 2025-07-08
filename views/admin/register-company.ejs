@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Company - Cab Booking System</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>🏢 Register Company</h1>
+            <p>Add a new company to the system</p>
+        </div>
+        
+        <form action="/admin/register-company" method="POST">
+            <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input 
+                    type="text" 
+                    id="companyName" 
+                    name="companyName" 
+                    placeholder="Enter company name"
+                    required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="adminEmail">Admin Email</label>
+                <input 
+                    type="email" 
+                    id="adminEmail" 
+                    name="adminEmail" 
+                    placeholder="Enter admin email address"
+                    required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="adminPhone">Admin Phone</label>
+                <input 
+                    type="tel" 
+                    id="adminPhone" 
+                    name="adminPhone" 
+                    placeholder="Enter admin phone number"
+                    required
+                >
+            </div>
+            
+            <button type="submit" class="btn">Register Company</button>
+        </form>
+        
+        <div class="form-footer">
+            <a href="/admin/dashboard">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html> 
