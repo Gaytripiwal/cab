@@ -55,16 +55,18 @@ app.post('/admin/register-company', (req, res) => {
     res.redirect('/admin/dashboard');
 });
 
-app.get('/admin/register-hr', (req, res) => {
-    res.render('admin/register-hr');
+app.get('/admin/register-employee', (req, res) => {
+    res.render('admin/register-employee');
 });
 
-app.post('/admin/register-hr', (req, res) => {
-    const { hrName, email, contact } = req.body;
+app.post('/admin/register-employee', (req, res) => {
+    const { empName, email, contact } = req.body;
     // Add your HR registration logic here
-    console.log('HR registration:', { hrName, email, contact });
+    console.log('Employee registration:', { empName, email, contact });
     res.redirect('/admin/dashboard');
 });
+
+
 
 // Start server
 app.listen(PORT, () => {
