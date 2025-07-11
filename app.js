@@ -28,6 +28,14 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+app.get('/Users/company', (req, res) => {
+    res.render('Users/company');
+});
+
+app.get('/Users/normusers', (req, res) => {
+    res.render('Users/normusers');
+});
+
 // Admin routes
 app.get('/admin/login', (req, res) => {
     res.render('admin/login');
@@ -58,6 +66,17 @@ app.post('/admin/register-company', (req, res) => {
 app.get('/admin/register-employee', (req, res) => {
     res.render('admin/register-employee');
 });
+
+
+app.get('/normuser', (req, res) => {
+    res.render('Users/normusers');
+});
+
+app.get('/company', (req, res) => {
+    res.render('Users/company');
+});
+
+
 
 app.post('/admin/register-employee', (req, res) => {
     const { empName, email, contact } = req.body;

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Dashboard</title>
+    <link rel="stylesheet" href="/css/company.css">
+</head>
+<body>
+    <!-- Navbar (Top) -->
+    <nav class="navbar">
+        <div class="navbar-brand">🚕 Cab Booking - Company Dashboard</div>
+        <div class="navbar-user">
+            <a href="#" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Rides</a></li>
+                <li><a href="#">Drivers</a></li>
+                <li><a href="#">Expense Summary</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Cards -->
+            <section class="dashboard-cards">
+                <div class="card">
+                    <h3>Total Rides</h3>
+                    <p><span class="count-up" data-target="128">1</span></p>
+                </div>
+                <div class="card">
+                    <h3>Total Drivers</h3>
+                    <p><span class="count-up" data-target="12">1</span></p>
+                </div>
+                <div class="card">
+                    <h3>Total expenture</h3>
+                    <p><span class="count-up" data-target="125000" data-prefix="₹ ">1</span></p>
+                </div>
+                <div class="card">
+                    <h3>Active Vehicles</h3>
+                    <p><span class="count-up" data-target="8">1</span></p>
+                </div>
+            </section>
+
+            <!-- Ride History Table (Recent 5 Rides) -->
+            <section class="ride-history">
+                <h2>Recent Ride History</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Driver</th>
+                            <th>Pickup</th>
+                            <th>Drop</th>
+                            <th>Fare</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2025-07-10</td>
+                            <td>Rahul Singh</td>
+                            <td>Sector 21</td>
+                            <td>Airport</td>
+                            <td>₹ 350</td>
+                        </tr>
+                        <tr>
+                            <td>2025-07-09</td>
+                            <td>Priya Sharma</td>
+                            <td>City Mall</td>
+                            <td>IT Park</td>
+                            <td>₹ 220</td>
+                        </tr>
+                        <tr>
+                            <td>2025-07-09</td>
+                            <td>Arjun Verma</td>
+                            <td>Central Market</td>
+                            <td>Railway Station</td>
+                            <td>₹ 180</td>
+                        </tr>
+                        <tr>
+                            <td>2025-07-08</td>
+                            <td>Sunita Rao</td>
+                            <td>Sector 15</td>
+                            <td>Sector 62</td>
+                            <td>₹ 400</td>
+                        </tr>
+                        <tr>
+                            <td>2025-07-08</td>
+                            <td>Deepak Kumar</td>
+                            <td>Metro Station</td>
+                            <td>Sector 21</td>
+                            <td>₹ 150</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Expense Summary (Optional: Chart or Table) -->
+            <section class="expense-summary">
+                <h2>Expense Summary</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Total Expenses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>July 2025</td>
+                            <td>₹ 15,000</td>
+                        </tr>
+                        <tr>
+                            <td>June 2025</td>
+                            <td>₹ 17,200</td>
+                        </tr>
+                        <tr>
+                            <td>May 2025</td>
+                            <td>₹ 13,500</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+<script>
+// Animated counter for dashboard numbers
+function animateCountUp(el, target, prefix = '', duration = 1200) {
+    let start = 1;
+    let startTime = null;
+    target = parseInt(target);
+    function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const value = Math.floor(progress * (target - start) + start);
+        el.textContent = prefix + value.toLocaleString();
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        } else {
+            el.textContent = prefix + target.toLocaleString();
+        }
+    }
+    requestAnimationFrame(step);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.count-up').forEach(function(el) {
+        const target = el.getAttribute('data-target');
+        const prefix = el.getAttribute('data-prefix') || '';
+        animateCountUp(el, target, prefix);
+    });
+});
+</script>
+</html>

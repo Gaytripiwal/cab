@@ -65,6 +65,61 @@
                 </script>
                 <button type="submit" class="login-btn">Login</button>
             </form>
+            <div id="loginResult"></div>
+            <!-- Login logic for company and normal user -->
+            <script>
+            document.querySelector('form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Get selected role
+                const role = document.getElementById('role').value;
+                let email, password;
+                let apiUrl = 'http://localhost:5000/api/auth';
+                let payload = {};
+
+                if (role === 'user') {
+                    // Normal user login fields
+                    email = document.getElementById('email').value;
+                    password = document.getElementById('password').value;
+                    // Set API endpoint for normal user login
+                    apiUrl = '/api/normuserlogin'; // <-- Normal User Login API
+                    payload = { role, email, password, companyname, companyid };
+
+                } else if (role === 'company') {
+                    // Company login fields
+                    email = document.getElementById('company-email').value;
+                    password = document.getElementById('company-password').value;
+                    companyname = document.getElementById('company-name').value;
+                    companyid = document.getElementById('company-id').value;
+
+                    // Set API endpoint for company login
+                    apiUrl = '/Company/login'; // <-- Company Login API
+                    payload = {role, email, password };
+                }
+
+                try {
+                    // Make API call
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await response.json();
+                    if (response.ok) {
+                        document.getElementById('loginResult').innerText = 'Login successful!';
+                     if(role === 'user') {
+                        redirect('/normuser');
+                     } else {
+                        redirect('/company');
+                     }
+                    } else {
+                        document.getElementById('loginResult').innerText = data.message || 'Login failed!';
+                    }
+                } catch (error) {
+                    document.getElementById('loginResult').innerText = 'An error occurred.';
+                }
+            });
+            </script>
         </div>
         <div class="form-footer">
             <p>Welcome to the Cab Booking System &mdash; Safe, Fast, Reliable.</p>
